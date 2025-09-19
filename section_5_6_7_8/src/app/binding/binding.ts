@@ -5,9 +5,9 @@ import { Component } from '@angular/core';
   imports: [],
   standalone:true,
   templateUrl: './binding.html',
-  styles: ``
+  styles: [],
 })
 export class Binding {
   titre : String = "String Interpolation";
-  id : String="Property Binding";
+  dis : boolean=false;
 }
