@@ -10,4 +10,7 @@ import { Component } from '@angular/core';
 export class Binding {
   titre : String = "String Interpolation";
   dis : boolean=false;
+  changeText(){
+    this.titre="changed text";
+  }
 }
