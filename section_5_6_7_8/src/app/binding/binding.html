@@ -4,3 +4,6 @@
 <h1>Property Binding</h1>
 <button [disabled]="dis">Cliquer ici</button>
 <button (click)="changeText()">Changer Titre</button>
+<h1>Two way binding</h1>
+<input type="text" [(ngModel)]="test">
+<p>{{test}}</p>
