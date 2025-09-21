@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-produit',
-  imports: [CommonModule],
+  imports: [],
   standalone:true,
   templateUrl: './produit.html',
 })
