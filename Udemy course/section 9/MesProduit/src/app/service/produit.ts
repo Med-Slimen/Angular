@@ -35,4 +35,13 @@ export class ProduitService {
   addProduit(nwProduit : Produit): void{
     this.produits.push(nwProduit);
   }
+  supprimerProduit(produit : Produit) : void{
+  let conf=confirm("vous etes sur ?");
+  if (conf) {
+    const index=this.produits.indexOf(produit);
+  if (index>-1) {
+    this.produits.splice(index,1);
+  }
+  }
+ }
 }

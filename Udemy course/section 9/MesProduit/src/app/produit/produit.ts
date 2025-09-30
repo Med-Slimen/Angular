@@ -18,4 +18,7 @@ export class ProduitComponent implements OnInit {
  ngOnInit(): void {
    
  }
+ supprimerProduit(produit : Produit) : void{
+  this.produitService.supprimerProduit(produit);
+ }
 }

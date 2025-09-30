@@ -18,5 +18,6 @@ export class AddProduit implements OnInit {
     this.ProduitService.addProduit(this.newProduit);
     this.msg="Produit "+this.newProduit.nomProduit+" ajouté avec successé"
     alert(this.msg)
+    this.newProduit= new Produit();
   }
 }
