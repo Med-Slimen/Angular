@@ -48,4 +48,11 @@ export class ProduitService {
   return this.produits.find(p => p.idProduit == id)!;
 
 }
+updateProduit(prod: Produit){
+ const index = this.produits.indexOf(prod, 0);
+ if (index > -1) {
+    this.produits.splice(index, 1);
+    this.produits.splice(index,0,prod);
+  }
+ }
 }

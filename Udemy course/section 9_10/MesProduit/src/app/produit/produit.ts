@@ -21,7 +21,5 @@ export class ProduitComponent implements OnInit {
  supprimerProduit(produit : Produit) : void{
   this.produitService.supprimerProduit(produit);
  }
- updateProduit(produit: Produit): void{
-
- }
+ 
 }
