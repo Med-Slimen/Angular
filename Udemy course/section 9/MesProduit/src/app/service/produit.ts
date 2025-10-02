@@ -44,4 +44,8 @@ export class ProduitService {
   }
   }
  }
+ consulterProduit(id:number): Produit{
+  return this.produits.find(p => p.idProduit == id)!;
+
+}
 }
