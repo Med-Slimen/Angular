@@ -1,0 +1,30 @@
+<div class="container">
+    <div class="card shadow mb-4">
+        <div class="card-body">
+            <h1>List des projets</h1>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Id Projet</th>
+                        <th>Nom Projet</th>
+                        <th>Nom Client</th>
+                        <th>Date de debut</th>
+                    </tr>
+                </thead>
+                <tbody>
+                @for (projet of projets; track projet.idProjet) {
+                    <tr>
+                        <td>{{projet.idProjet}}</td>
+                        <td>{{projet.nomProjet}}</td>
+                        <td>{{projet.nomClient}}</td>
+                        <td>{{projet.dateDeb | date:'dd/MM/yyyy'}}</td>
+                    </tr>
+                }
+                @empty {
+                    <h1>Aucun Projet Trouvé</h1>
+                }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
