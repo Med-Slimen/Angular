@@ -6,6 +6,7 @@ import { Projet } from '../model/project.model';
 })
 export class ProjetService {
   projets : Projet[];
+  projet!:Projet;
   constructor(){
     this.projets=[
       {
@@ -24,5 +25,24 @@ export class ProjetService {
   }
   addProjet(projet : Projet):void{
     this.projets.push(projet);
+  }
+  supprimerProjet(projet : Projet):void{
+    const index =this.projets.indexOf(projet);
+    if (index >-1) {
+      let conf=confirm("vous etes sur ?")
+      if (conf) {
+        this.projets.splice(index,1);
+      }
+    }
+  }
+  findProjet(id : number):Projet{
+    this.projet=this.projets.find(p=>p.idProjet==id)!;
+    return this.projet;
+  }
+  updateProjet(nwProjet : Projet) : void{
+    const index=this.projets.findIndex(p=>p.idProjet==nwProjet.idProjet);
+    if (index>-1) {
+      this.projets.splice(index,1,nwProjet);
+    }
   }
 }
