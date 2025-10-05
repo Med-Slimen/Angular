@@ -13,7 +13,7 @@ import { ProjetService } from '../service/projectService';
 export class UpdateProjet implements OnInit {
   currentProjet!:Projet;
   constructor(private ProjetService : ProjetService,private activatedRoute : ActivatedRoute,private router : Router){
-    
+
   }
   ngOnInit(): void {
     const idc=this.activatedRoute.snapshot.params["id"];
@@ -21,7 +21,6 @@ export class UpdateProjet implements OnInit {
   }
   updateProduit():void{
     this.ProjetService.updateProjet(this.currentProjet);
-    alert(this.currentProjet.nomProjet+"Modifié avec succeé");
     this.router.navigate(['projets']);
   }
 }
