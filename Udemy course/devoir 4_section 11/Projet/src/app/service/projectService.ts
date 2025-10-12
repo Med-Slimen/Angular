@@ -1,22 +1,25 @@
 import { Injectable } from '@angular/core';
 import { Projet } from '../model/project.model';
+import { Departement } from '../model/Departemet.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProjetService {
   projets : Projet[];
+  depart:Departement[];
   projet!:Projet;
   constructor(){
+    this.depart=[{idDepart:1,nomDepart:"Informatique"},{idDepart:2,nomDepart:"Marketing"},{idDepart:3,nomDepart:"Finance"},{idDepart:4,nomDepart:"Design"}]
     this.projets=[
       {
-        idProjet:1,nomProjet:"Creation app mobile",nomClient:"Ahmed",dateDeb:new Date("04/12/2025")
+        idProjet:1,nomProjet:"Creation app mobile",nomClient:"Ahmed",dateDeb:new Date("04/12/2025"),Depart:this.depart[0]
       },
       {
-        idProjet:2,nomProjet:"Creation site web",nomClient:"Mohamed",dateDeb:new Date("12/25/2025")
+        idProjet:2,nomProjet:"Création du maquettes UI/UX",nomClient:"Mohamed",dateDeb:new Date("12/25/2025"),Depart:this.depart[3]
       },
       {
-        idProjet:3,nomProjet:"creation du base de donné",nomClient:"Tijani",dateDeb:new Date("01/10/2025")
+        idProjet:3,nomProjet:"Gestion du budget, comptabilité, facturation",nomClient:"Tijani",dateDeb:new Date("01/10/2025"),Depart:this.depart[2]
       }
   ];
   }
@@ -44,5 +47,11 @@ export class ProjetService {
     if (index>-1) {
       this.projets.splice(index,1,nwProjet);
     }
+  }
+  listerDepartement():Departement[]{
+    return this.depart;
+  }
+  consulterDepart(id: number):Departement{
+    return this.depart.find(dep => dep.idDepart==id)!;
   }
 }

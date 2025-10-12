@@ -9,6 +9,7 @@
                         <th>Nom Projet</th>
                         <th>Nom Client</th>
                         <th>Date de debut</th>
+                        <th>Categorie</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -18,6 +19,7 @@
                         <td>{{projet.nomProjet}}</td>
                         <td>{{projet.nomClient}}</td>
                         <td>{{projet.dateDeb | date:'dd/MM/yyyy'}}</td>
+                        <td>{{projet.Depart?.nomDepart}}</td>
                         <td><a class="btn btn-danger" (click)="supprimerProjet(projet)">Supprimer</a></td>
                         <td><a class="btn btn-success" [routerLink]="['/UpdateProjet',projet.idProjet]">Modifier</a></td>
                     </tr>
