@@ -1,7 +1,7 @@
 <div class="container">
     <div class="card shadow mb-4">
         <div class="card-body">
-            <h1>List des projets</h1>
+            <h1 align="center" style="margin-bottom: 20px;">List des projets</h1>
             <table class="table table-striped">
                 <thead>
                     <tr>
@@ -19,7 +19,7 @@
                         <td>{{projet.nomProjet}}</td>
                         <td>{{projet.nomClient}}</td>
                         <td>{{projet.dateDeb | date:'dd/MM/yyyy'}}</td>
-                        <td>{{projet.Depart?.nomDepart}}</td>
+                        <td>{{projet.Depart.nomDepart}}</td>
                         <td><a class="btn btn-danger" (click)="supprimerProjet(projet)">Supprimer</a></td>
                         <td><a class="btn btn-success" [routerLink]="['/UpdateProjet',projet.idProjet]">Modifier</a></td>
                     </tr>

@@ -13,7 +13,6 @@ import { Departement } from '../model/Departemet.model';
 })
 export class UpdateProjet implements OnInit {
   currentProjet!:Projet;
-  updatedId!:number;
   depart?:Departement[];
   constructor(private ProjetService : ProjetService,private activatedRoute : ActivatedRoute,private router : Router){
 
@@ -22,10 +21,8 @@ export class UpdateProjet implements OnInit {
     this.depart=this.ProjetService.listerDepartement();
     const idc=this.activatedRoute.snapshot.params["id"];
     this.currentProjet=this.ProjetService.findProjet(idc);
-    this.updatedId=this.currentProjet.Depart.idDepart;
   }
   updateProduit():void{
-    this.currentProjet.Depart=this.ProjetService.consulterDepart(this.updatedId);
     this.ProjetService.updateProjet(this.currentProjet);
     this.router.navigate(['projets']);
   }

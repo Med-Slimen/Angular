@@ -5,7 +5,7 @@
     <form>
         <div readonly class="col-sm-2 col-md-2 col-lg-2">
             <label>ID Projet</label>
-            <input  type="text" [(ngModel)]="currentProjet.idProjet" name="idProjet" class="form-control">
+            <input readonly  type="text" [(ngModel)]="currentProjet.idProjet" name="idProjet" class="form-control">
         </div>
         <div class="col-sm-4 col-md-4 col-lg-4">
             <label>Nom Projet</label>
@@ -23,9 +23,9 @@
         <div class="col-sm-4 col-md-4 col-lg-4">
         <label>Categorie</label>
             <select class="form-control form-control-lg" id="idDepart" name="idDepart"
-            [(ngModel)]="updatedId">
+            [(ngModel)]="currentProjet.Depart">
             @for(dep of depart; track dep.idDepart){
-            <option [value]="dep.idDepart"> {{dep.nomDepart}} </option>
+            <option [ngValue]="dep"> {{dep.nomDepart}} </option>
             }
             </select>
         </div>
