@@ -9,6 +9,7 @@ export class ProjetService {
   projets : Projet[];
   depart:Departement[];
   projet!:Projet;
+  projetsRecherche!:Projet[];
   constructor(){
     this.depart=[{idDepart:1,nomDepart:"Informatique"},{idDepart:2,nomDepart:"Marketing"},{idDepart:3,nomDepart:"Finance"},{idDepart:4,nomDepart:"Design"}]
     this.projets=[
@@ -53,5 +54,14 @@ export class ProjetService {
   }
   consulterDepart(id: number):Departement{
     return this.depart.find(dep => dep.idDepart==id)!;
+  }
+  rechercheParDepartement(idDepart : number):Projet[]{
+    this.projetsRecherche=[];
+    this.projets.forEach(curr=>{
+      if (curr.Depart.idDepart==idDepart) {
+        this.projetsRecherche.push(curr);
+      }
+    })
+    return this.projetsRecherche;
   }
 }
