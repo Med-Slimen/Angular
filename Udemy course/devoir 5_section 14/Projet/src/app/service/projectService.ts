@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Projet } from '../model/project.model';
 import { Departement } from '../model/Departemet.model';
-
+import { of, Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
@@ -26,6 +26,9 @@ export class ProjetService {
   }
   getProjets():Projet[]{
     return this.projets;
+  }
+  getProjets1():Observable<Projet[]>{
+    return of(this.projets);
   }
   addProjet(projet : Projet):void{
     this.projets.push(projet);
@@ -64,4 +67,5 @@ export class ProjetService {
     })
     return this.projetsRecherche;
   }
+
 }

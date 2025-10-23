@@ -17,4 +17,5 @@ export class ProjetsComponent {
   supprimerProjet(projet : Projet):void{
     this.ProjetService.supprimerProjet(projet);
   }
+  
 }
