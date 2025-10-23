@@ -3,11 +3,10 @@ import { Component, OnInit } from '@angular/core';
 import { ProjetService } from '../service/projectService';
 import { Projet } from '../model/project.model';
 import { FormsModule } from '@angular/forms';
-import { SearchFilterPipe } from '../search-filter-pipe';
 
 @Component({
   selector: 'app-recherche-par-nom',
-  imports: [DatePipe,FormsModule,SearchFilterPipe,CommonModule],
+  imports: [DatePipe,FormsModule,CommonModule],
   templateUrl: './recherche-par-nom.html',
   styles: ``
 })
