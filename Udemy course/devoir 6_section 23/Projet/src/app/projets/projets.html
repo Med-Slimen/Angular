@@ -8,6 +8,7 @@
                         <th>Id Projet</th>
                         <th>Nom Projet</th>
                         <th>Nom Client</th>
+                        <th>Email du Client</th>
                         <th>Date de debut</th>
                         <th>Departement</th>
                     </tr>
@@ -18,6 +19,7 @@
                         <td>{{projet.idProjet}}</td>
                         <td>{{projet.nomProjet}}</td>
                         <td>{{projet.nomClient}}</td>
+                        <td>{{projet.emailClient}}</td>
                         <td>{{projet.dateDeb | date:'dd/MM/yyyy'}}</td>
                         <td>{{projet.Depart.nomDepart}}</td>
                         <td><a class="btn btn-danger" (click)="supprimerProjet(projet)">Supprimer</a></td>

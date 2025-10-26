@@ -14,13 +14,13 @@ export class ProjetService {
     this.depart=[{idDepart:1,nomDepart:"Informatique"},{idDepart:2,nomDepart:"Marketing"},{idDepart:3,nomDepart:"Finance"},{idDepart:4,nomDepart:"Design"}]
     this.projets=[
       {
-        idProjet:1,nomProjet:"Creation app mobile",nomClient:"Ahmed",dateDeb:new Date("04/12/2025"),Depart:this.depart[0]
+        idProjet:1,nomProjet:"Creation app mobile",nomClient:"Ahmed",dateDeb:new Date("04/12/2025"),Depart:this.depart[0],emailClient:"Ahmed01@gmail.com"
       },
       {
-        idProjet:2,nomProjet:"Création du maquettes UI/UX",nomClient:"Mohamed",dateDeb:new Date("12/25/2025"),Depart:this.depart[3]
+        idProjet:2,nomProjet:"Création du maquettes UI/UX",nomClient:"Mohamed",dateDeb:new Date("12/25/2025"),Depart:this.depart[3],emailClient:"Mohamed@gmail.com"
       },
       {
-        idProjet:3,nomProjet:"Gestion du budget, comptabilité, facturation",nomClient:"Tijani",dateDeb:new Date("01/10/2025"),Depart:this.depart[2]
+        idProjet:3,nomProjet:"Gestion du budget, comptabilité, facturation",nomClient:"Tijani",dateDeb:new Date("01/10/2025"),Depart:this.depart[2],emailClient:"Tijani@gmail.com"
       }
   ];
   }

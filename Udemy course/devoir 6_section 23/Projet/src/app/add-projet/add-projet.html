@@ -29,6 +29,12 @@
             nomProjet est obligatoire
             </span>
         }
+        @if (myForm.controls['nomProjet'].hasError('minlength')&& myForm.controls['nomProjet'].touched)
+        {
+            <span class="text-danger">
+            nomProjet min 6 caracteres !
+            </span>
+        }
         <div class="col-sm-2 col-md-2 col-lg-2">
             <label>Nom Client</label>
             <input type="text" [(ngModel)]="newProjet.nomClient" formControlName="nomClient" name="nomClient" class="form-control">
@@ -37,6 +43,22 @@
         {
             <span class="text-danger">
             nomClient est obligatoire
+            </span>
+        }
+        <div class="col-sm-2 col-md-2 col-lg-2">
+            <label>Email du Client</label>
+            <input type="text" [(ngModel)]="newProjet.emailClient" formControlName="emailClient" name="emailClient" class="form-control">
+        </div>
+        @if (myForm.controls['emailClient'].hasError('required')&& myForm.controls['emailClient'].touched)
+        {
+            <span class="text-danger">
+            email est obligatoire
+            </span>
+        }
+        @if (myForm.controls['emailClient'].hasError('email')&& myForm.controls['emailClient'].touched)
+        {
+            <span class="text-danger">
+            email non valide
             </span>
         }
         <div class="col-sm-4 col-md-4 col-lg-4">
