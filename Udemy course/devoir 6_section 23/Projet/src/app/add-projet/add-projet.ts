@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Projet } from '../model/project.model';
 import { ProjetService } from '../service/projectService';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -7,17 +7,28 @@ import { Departement } from '../model/Departemet.model';
 
 @Component({
   selector: 'app-add-projet',
-  imports: [FormsModule],
+  imports: [FormsModule,ReactiveFormsModule],
   templateUrl: './add-projet.html',
 })
 export class AddProjet implements OnInit {
   newProjet =new Projet();
+  projets!:Projet[];
   depart?: Departement[];
   idDepart?:number;
-  constructor(private ProjetService : ProjetService,private router : Router){
+  myForm!:FormGroup;
+  constructor(private ProjetService : ProjetService,private router : Router,private formBuilder : FormBuilder){
   }
   ngOnInit(): void {
+    this.projets=this.ProjetService.getProjets();
+    console.log(this.projets);
     this.depart=this.ProjetService.listerDepartement();
+    this.myForm=this.formBuilder.group({
+      idProduit : ['',[Validators.required]],
+      nomProjet : ['',[Validators.required,Validators.minLength(6)]],
+      nomClient : ['',[Validators.required]],
+      dateDeb : ['',[Validators.required]],
+      idDepart : ['',[Validators.required]],
+    })
   }
   addProjet():void{
     if (this.idDepart) {
@@ -32,5 +43,7 @@ export class AddProjet implements OnInit {
     }
     
   }
-  
+  idExist(idProjet : number):boolean{
+    return this.projets.some(p=>p.idProjet==idProjet);
+  }
 }
