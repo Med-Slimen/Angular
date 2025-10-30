@@ -24,7 +24,7 @@ export class AddProjet implements OnInit {
     this.depart=this.ProjetService.listerDepartement();
     this.myForm=this.formBuilder.group({
       idProduit : ['',[Validators.required]],
-      nomProjet : ['',[Validators.required,Validators.minLength(6)]],
+      nomProjet : ['',[Validators.required,Validators.minLength(3)]],
       nomClient : ['',[Validators.required]],
       emailClient:['',[Validators.required,Validators.email]],
       dateDeb : ['',[Validators.required]],

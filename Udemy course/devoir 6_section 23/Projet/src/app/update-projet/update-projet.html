@@ -17,6 +17,12 @@
             nomProjet est obligatoire
             </span>
         }
+        @if (myForm.controls['nomProjet'].hasError('minlength')&& myForm.controls['nomProjet'].touched)
+        {
+            <span class="text-danger">
+            nomProjet min 3 caracteres !
+            </span>
+        }
         <div class="col-sm-2 col-md-2 col-lg-2">
             <label>Nom Client</label>
             <input type="text" [(ngModel)]="currentProjet.nomClient" formControlName="nomClient" name="nomClient" class="form-control">

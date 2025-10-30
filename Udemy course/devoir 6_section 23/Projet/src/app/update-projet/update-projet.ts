@@ -26,7 +26,7 @@ export class UpdateProjet implements OnInit {
     this.currentProjet=this.ProjetService.findProjet(idc);
     this.myForm=this.formBuilder.group({
       idProjet : ['',[Validators.required]],
-      nomProjet : ['',[Validators.required]],
+      nomProjet : ['',[Validators.required,Validators.minLength(3)]],
       nomClient : ['',[Validators.required]],
       emailClient:['',[Validators.required,Validators.email]],
       dateDeb : ['',[Validators.required]],
