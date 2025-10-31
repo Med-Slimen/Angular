@@ -10,7 +10,7 @@
         @if (myForm.controls['idProduit'].hasError('required')&& myForm.controls['idProduit'].touched)
         {
             <span class="text-danger">
-            idProduit est obligatoire
+            idProjet est obligatoire
             </span>
         }
         @if (myForm.get('idProduit')?.touched && idExist(myForm.get('idProduit')?.value))
