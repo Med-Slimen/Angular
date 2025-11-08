@@ -15,8 +15,15 @@ export class AddProduit implements OnInit {
   }
   ngOnInit(): void {
   }
-  addProduit():void{
-    this.ProduitService.addProduit(this.newProduit);
-    this.route.navigate(['produit']);
-  }
+  // addProduit():void{
+  //   this.ProduitService.addProduit(this.newProduit);
+  //   this.route.navigate(['produit']);
+  // }
+  addProduit(){
+    this.ProduitService.addProduit(this.newProduit)
+    .subscribe(prod => {
+      console.log(prod);
+      this.route.navigate(['produit']);
+    });
+}
 }

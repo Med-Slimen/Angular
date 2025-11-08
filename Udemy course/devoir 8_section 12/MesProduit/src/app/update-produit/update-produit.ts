@@ -16,11 +16,15 @@ export class UpdateProduit implements OnInit {
   constructor(private ProduitService : ProduitService ,private activatedRoute : ActivatedRoute , private route : Router
   ){
   }
-  ngOnInit(): void {
-    this.currentProduit=this.ProduitService.consulterProduit(this.activatedRoute.snapshot.params['id'])
-  }
+  ngOnInit() {
+  this.ProduitService.consulterProduit(this.activatedRoute.snapshot.params['id']).
+  subscribe( prod =>{ this.currentProduit = prod; } ) ;
+}
   updateProduit(){
-    this.ProduitService.updateProduit(this.currentProduit);
-    this.route.navigate(['produit']);
+    this.ProduitService.updateProduit(this.currentProduit).subscribe(prod => {
+    this.route.navigate(['produit']); }
+);
+
   }
+  
  }

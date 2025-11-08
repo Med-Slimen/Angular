@@ -11,15 +11,30 @@ import { RouterLink } from '@angular/router';
   templateUrl: './produit.html',
 })
 export class ProduitComponent implements OnInit {
-  produits : Produit[];
+  produits! : Produit[];
   constructor(private produitService : ProduitService){
-    this.produits=produitService.listProduit()
+    // this.produits=produitService.listProduit()
   }
  ngOnInit(): void {
-   
+  this.chargerProduits();
  }
- supprimerProduit(produit : Produit) : void{
-  this.produitService.supprimerProduit(produit);
+ chargerProduits(){
+    this.produitService.listProduit().subscribe(prods => {
+    console.log(prods);
+    this.produits = prods;
+});
  }
+//  supprimerProduit(produit : Produit) : void{
+//   this.produitService.supprimerProduit(produit);
+//  }
+supprimerProduit(p: Produit)
+{
+  let conf = confirm("Etes-vous sûr ?");
+  if (conf)
+  this.produitService.supprimerProduit(p.idProduit!).subscribe(() => {
+  console.log("produit supprimé");
+  this.chargerProduits();
+  });
+} 
  
 }
