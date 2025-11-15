@@ -22,8 +22,9 @@
                         <td>{{projet.emailClient}}</td>
                         <td>{{projet.dateDeb | date:'dd/MM/yyyy'}}</td>
                         <td>{{projet.Depart.nomDepart}}</td>
+                        @if(auth.isAdmin()) {
                         <td><a class="btn btn-danger" (click)="supprimerProjet(projet)">Supprimer</a></td>
-                        <td><a class="btn btn-success" [routerLink]="['/UpdateProjet',projet.idProjet]">Modifier</a></td>
+                        <td><a class="btn btn-success" [routerLink]="['/UpdateProjet',projet.idProjet]">Modifier</a></td>}
                     </tr>
                 }
                 @empty {
