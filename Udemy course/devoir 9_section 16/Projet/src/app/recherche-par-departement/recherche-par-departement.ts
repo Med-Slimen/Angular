@@ -5,6 +5,7 @@ import { DatePipe } from '@angular/common';
 import { Departement } from '../model/Departemet.model';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
+import { Auth } from '../service/auth';
 
 @Component({
   selector: 'app-recherche-par-departement',
@@ -16,7 +17,7 @@ export class RechercheParDepartement implements OnInit {
   projets!:Projet[];
   departements?:Departement[];
   IdDepart!:number;
-  constructor(private projetService : ProjetService){
+  constructor(private projetService : ProjetService,public auth:Auth){
   }
   ngOnInit(): void {
     this.projets=[];

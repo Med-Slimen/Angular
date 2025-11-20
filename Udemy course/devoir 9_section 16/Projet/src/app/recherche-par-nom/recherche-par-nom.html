@@ -28,9 +28,10 @@
                         @else {
                         <td>PAS DE DEPARTEMENT</td>
                         }
+                        @if(auth.isAdmin()) {
                         <td><a class="btn btn-danger" (click)="supprimerProjet(projet)">Supprimer</a></td>
                         <td><a class="btn btn-success" [routerLink]="['/UpdateProjet',projet.idProjet]">Modifier</a>
-                        </td>
+                        </td>}
                     </tr>
                 </tbody>
                 }
