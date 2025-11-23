@@ -21,7 +21,7 @@ export class RechercheParNom implements OnInit {
   constructor(private projetService : ProjetService,public auth:Auth){
     }
 ngOnInit(): void {
-  this.projetService.getProjets1().subscribe(proj => {
+  this.projetService.getProjets().subscribe(proj => {
       console.log(proj);
       this.allProjets = proj;
     })
@@ -31,7 +31,15 @@ this.projets = this.allProjets.filter(item =>
 item.nomProjet?.toLowerCase().includes(filterText));
 }
 supprimerProjet(projet : Projet):void{
-    this.projetService.supprimerProjet(projet);
-    this.projets=this.projetService.rechercheParDepartement(this.IdDepart);
+    // this.projetService.supprimerProjet(projet);
+    let conf = confirm("Etes-vous sûr ?");
+    if (conf)
+    this.projetService.supprimerProjet(projet.idProjet!).subscribe(() => {
+    console.log("projet supprimé");
+    });
+    //
+    this.projetService.rechercherParDepartement(this.IdDepart).subscribe(projs=>
+      this.projets=projs
+    )
   }
 }

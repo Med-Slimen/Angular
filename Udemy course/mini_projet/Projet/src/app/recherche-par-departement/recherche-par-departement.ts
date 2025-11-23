@@ -21,14 +21,28 @@ export class RechercheParDepartement implements OnInit {
   }
   ngOnInit(): void {
     this.projets=[];
-    this.departements=this.projetService.listerDepartement();
+    this.projetService.listerDepartement().
+    subscribe(cats => {this.departements = cats._embedded.departements;
+    console.log(cats);
+    });
   }
   onChange():void{
     console.log(this.IdDepart);
-    this.projets=this.projetService.rechercheParDepartement(this.IdDepart);
+    // this.projets=this.projetService.rechercheParDepartement(this.IdDepart);
+    this.projetService.rechercherParDepartement(this.IdDepart).subscribe(projs=>
+      this.projets=projs
+    )
   }
   supprimerProjet(projet : Projet):void{
-    this.projetService.supprimerProjet(projet);
-    this.projets=this.projetService.rechercheParDepartement(this.IdDepart);
+    // this.projetService.supprimerProjet(projet);
+    let conf = confirm("Etes-vous sûr ?");
+    if (conf)
+    this.projetService.supprimerProjet(projet.idProjet!).subscribe(() => {
+    console.log("projet supprimé");
+    });
+    //
+    this.projetService.rechercherParDepartement(this.IdDepart).subscribe(projs=>
+      this.projets=projs
+    )
   }
 }

@@ -19,11 +19,16 @@ export class AddProjet implements OnInit {
   constructor(private ProjetService : ProjetService,private router : Router,private formBuilder : FormBuilder){
   }
   ngOnInit(): void {
-    this.projets=this.ProjetService.getProjets();
+    this.ProjetService.getProjets().subscribe(projs => {
+    console.log(projs);
+    this.projets = projs;
+    })
     console.log(this.projets);
-    this.depart=this.ProjetService.listerDepartement();
+    this.ProjetService.listerDepartement().
+    subscribe(deps => {this.depart = deps._embedded.departements;
+    console.log(deps);
+});
     this.myForm=this.formBuilder.group({
-      idProduit : ['',[Validators.required]],
       nomProjet : ['',[Validators.required,Validators.minLength(3)]],
       nomClient : ['',[Validators.required]],
       emailClient:['',[Validators.required,Validators.email]],
@@ -31,6 +36,7 @@ export class AddProjet implements OnInit {
       idDepart : ['',[Validators.required]],
     })
   }
+  /*
   addProjet():void{
     if (this.idDepart) {
       this.newProjet.Depart=this.ProjetService.consulterDepart(this.idDepart);
@@ -43,7 +49,16 @@ export class AddProjet implements OnInit {
       alert("Choisir une Departement");
     }
     
-  }
+  }*/
+ addProjet(){
+  this.newProjet.departement = this.depart?.find(dep => dep.idDepart == this.idDepart)!;
+  this.ProjetService.addProjet(this.newProjet)
+  .subscribe(proj => {
+  console.log(proj);
+  this.router.navigate(['projets']);
+  }); 
+}
+
   idExist(idProjet : number):boolean{
     return this.projets.some(p=>p.idProjet==idProjet);
   }

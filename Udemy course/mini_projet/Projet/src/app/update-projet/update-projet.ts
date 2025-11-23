@@ -12,18 +12,29 @@ import { Departement } from '../model/Departemet.model';
   templateUrl: './update-projet.html',
 })
 export class UpdateProjet implements OnInit {
-  currentProjet!:Projet;
+  currentProjet:Projet=new Projet();
   depart?:Departement[];
+  updatedDepartId!:number;
   myForm!:FormGroup;
   projets!:Projet[];
   constructor(private ProjetService : ProjetService,private activatedRoute : ActivatedRoute,private router : Router,private formBuilder : FormBuilder){
 
   }
   ngOnInit(): void {
+    /*
     this.projets=this.ProjetService.getProjets();
     this.depart=this.ProjetService.listerDepartement();
     const idc=this.activatedRoute.snapshot.params["id"];
-    this.currentProjet=this.ProjetService.findProjet(idc);
+    this.currentProjet=this.ProjetService.findProjet(idc);*/
+    this.ProjetService.listerDepartement().
+    subscribe(dep => {this.depart = dep._embedded.departements;
+    console.log(dep);
+    });
+    this.ProjetService.findProjet(this.activatedRoute.snapshot.params['id']).
+    subscribe( proj =>{ this.currentProjet = proj;
+console.log(this.currentProjet)
+     } ) ;
+    
     this.myForm=this.formBuilder.group({
       idProjet : ['',[Validators.required]],
       nomProjet : ['',[Validators.required,Validators.minLength(3)]],
@@ -34,7 +45,9 @@ export class UpdateProjet implements OnInit {
     })
   }
   updateProduit():void{
-    this.ProjetService.updateProjet(this.currentProjet);
-    this.router.navigate(['projets']);
+    this.ProjetService.updateProjet(this.currentProjet).subscribe(prod => {
+    this.router.navigate(['projets']); }
+    );
+
   }
 }

@@ -24,6 +24,7 @@ export class UpdateProjet implements OnInit {
     this.depart=this.ProjetService.listerDepartement();
     const idc=this.activatedRoute.snapshot.params["id"];
     this.currentProjet=this.ProjetService.findProjet(idc);
+    console.log(this.currentProjet);
     this.myForm=this.formBuilder.group({
       idProjet : ['',[Validators.required]],
       nomProjet : ['',[Validators.required,Validators.minLength(3)]],

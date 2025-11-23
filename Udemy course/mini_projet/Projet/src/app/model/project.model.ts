@@ -5,6 +5,6 @@ export class Projet{
     nomProjet?: String;
     nomClient?:String;
     dateDeb?:Date;
-    Depart!:Departement;
+    departement!:Departement;
     emailClient!:String;
 }

@@ -2,15 +2,25 @@ import { Injectable } from '@angular/core';
 import { Projet } from '../model/project.model';
 import { Departement } from '../model/Departemet.model';
 import { of, Observable } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { environment } from '../../environments/environment';
+import { DepartementWrapper } from '../model/DepartementWrapped';
+const httpOptions = {
+headers: new HttpHeaders( {'Content-Type': 'application/json'} )
+};
 @Injectable({
   providedIn: 'root'
 })
 export class ProjetService {
+  /*
   projets : Projet[];
-  depart:Departement[];
+  depart:Departement[];*/
   projet!:Projet;
   projetsRecherche!:Projet[];
-  constructor(){
+  apiURL : string ='http://localhost:8080/projets/api';
+  apiURLDep:string = 'http://localhost:8080/projets/dep';
+  constructor(private http : HttpClient){
+    /*
     this.depart=[{idDepart:1,nomDepart:"Informatique"},{idDepart:2,nomDepart:"Marketing"},{idDepart:3,nomDepart:"Finance"},{idDepart:4,nomDepart:"Design"}]
     this.projets=[
       {
@@ -22,14 +32,12 @@ export class ProjetService {
       {
         idProjet:3,nomProjet:"Gestion du budget, comptabilité, facturation",nomClient:"Tijani",dateDeb:new Date("01/10/2025"),Depart:this.depart[2],emailClient:"Tijani@gmail.com"
       }
-  ];
+  ];*/
   }
-  getProjets():Projet[]{
-    return this.projets;
+  getProjets():Observable<Projet[]>{
+    return this.http.get<Projet[]>(this.apiURL);
   }
-  getProjets1():Observable<Projet[]>{
-    return of(this.projets);
-  }
+  /*
   addProjet(projet : Projet):void{
     this.projets.push(projet);
   }
@@ -66,6 +74,31 @@ export class ProjetService {
       }
     })
     return this.projetsRecherche;
-  }
-
+  }*/
+ addProjet( proj: Projet):Observable<Projet>{
+  return this.http.post<Projet>(this.apiURL, proj, httpOptions);
+}
+supprimerProjet(id : number) {
+const url = `${this.apiURL}/${id}`;
+return this.http.delete(url, httpOptions);
+}
+findProjet(id: number): Observable<Projet> {
+const url = `${this.apiURL}/${id}`;
+return this.http.get<Projet>(url);
+}
+updateProjet(prod :Projet) : Observable<Projet>
+{
+return this.http.put<Projet>(this.apiURL, prod, httpOptions);
+}
+/*
+listerDepartement():Observable<Departement[]>{
+return this.http.get<Departement[]>(environment.apiURL+"/dep");
+}*/
+listerDepartement():Observable<DepartementWrapper>{
+return this.http.get<DepartementWrapper>(this.apiURLDep);
+}
+rechercherParDepartement(idDep: number):Observable< Projet[]> {
+const url = `${this.apiURL}/projDeps/${idDep}`;
+return this.http.get<Projet[]>(url);
+}
 }
