@@ -32,6 +32,7 @@ export class UpdateProjet implements OnInit {
     });
     this.ProjetService.findProjet(this.activatedRoute.snapshot.params['id']).
     subscribe( proj =>{ this.currentProjet = proj;
+      this.updatedDepartId = this.currentProjet.departement.idDepart;
 console.log(this.currentProjet)
      } ) ;
     
@@ -45,6 +46,8 @@ console.log(this.currentProjet)
     })
   }
   updateProduit():void{
+    this.currentProjet.departement = this.depart!.
+    find(dep => dep.idDepart == this.updatedDepartId)!;
     this.ProjetService.updateProjet(this.currentProjet).subscribe(prod => {
     this.router.navigate(['projets']); }
     );

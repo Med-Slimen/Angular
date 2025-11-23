@@ -63,9 +63,9 @@
         <div class="col-sm-4 col-md-4 col-lg-4">
         <label>Departement</label>
             <select class="form-control form-control-lg" formControlName="idDepart" id="idDepart" name="idDepart"
-            [(ngModel)]="currentProjet.departement">
+            [(ngModel)]="updatedDepartId">
             @for(dep of depart; track dep.idDepart){
-            <option [ngValue]="dep"> {{dep.nomDepart}} </option>
+            <option [value]="dep.idDepart"> {{dep.nomDepart}} </option>
             }
             </select>
         </div>
