@@ -32,7 +32,7 @@ export class UpdateProjet implements OnInit {
     });
     this.ProjetService.findProjet(this.activatedRoute.snapshot.params['id']).
     subscribe( proj =>{ this.currentProjet = proj;
-      this.updatedDepartId = this.currentProjet.departement.idDepart;
+      this.updatedDepartId = this.currentProjet.departement.idDepart!;
 console.log(this.currentProjet)
      } ) ;
     

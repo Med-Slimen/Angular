@@ -101,4 +101,8 @@ rechercherParDepartement(idDep: number):Observable< Projet[]> {
 const url = `${this.apiURL}/projDeps/${idDep}`;
 return this.http.get<Projet[]>(url);
 }
+addDepartement( dep: Departement):Observable<Departement>{
+return this.http.post<Departement>(this.apiURLDep, dep, httpOptions);
+}
+
 }

@@ -1,4 +1,4 @@
 export class Departement{
-    idDepart! : number;
+    idDepart! : number| null;
     nomDepart?: String;
 }

@@ -22,6 +22,8 @@
                         <li> <a class="dropdown-item" routerLink="/rechercheParDepartement">Recherche Par
                                 Departement</a></li>
                         <li><a class="dropdown-item" routerLink="/rechercheParNom" >Recherche Par Nom</a></li>
+                        @if(auth.isAdmin()) {
+                        <li><a class="dropdown-item" routerLink="/listeDepartements" >Gestion des départements</a></li>}
                     </ul>
                 </li>
             </ul>
