@@ -36,10 +36,8 @@ export class ProjetService {
   ];*/
   }
   getProjets():Observable<Projet[]>{
-    let jwt = this.authService.getToken();
-    jwt = "Bearer "+jwt;
-    let httpHeaders = new HttpHeaders({"Authorization":jwt})
-    return this.http.get<Projet[]>(this.apiURL+"/all",{headers:httpHeaders});
+    
+    return this.http.get<Projet[]>(this.apiURL+"/all");
   }
   /*
   addProjet(projet : Projet):void{
@@ -80,48 +78,36 @@ export class ProjetService {
     return this.projetsRecherche;
   }*/
  addProjet( proj: Projet):Observable<Projet>{
-  let jwt = this.authService.getToken();
-  jwt = "Bearer "+jwt;
-  let httpHeaders = new HttpHeaders({"Authorization":jwt})
-  return this.http.post<Projet>(this.apiURL+"/addproj", proj, {headers:httpHeaders});
+  
+  return this.http.post<Projet>(this.apiURL+"/addproj", proj);
 }
 supprimerProjet(id : number) {
   const url = `${this.apiURL}/delproj/${id}`;
-  let jwt = this.authService.getToken();
-  jwt = "Bearer "+jwt;
-  let httpHeaders = new HttpHeaders({"Authorization":jwt})
-  return this.http.delete(url, {headers:httpHeaders});
+  
+  return this.http.delete(url);
 }
 findProjet(id: number): Observable<Projet> {
   const url = `${this.apiURL}/getbyid/${id}`;
-  let jwt = this.authService.getToken();
-  jwt = "Bearer "+jwt;
-  let httpHeaders = new HttpHeaders({"Authorization":jwt})
-  return this.http.get<Projet>(url,{headers:httpHeaders});
+  
+  return this.http.get<Projet>(url);
 }
 updateProjet(prod :Projet) : Observable<Projet>
 {
-  let jwt = this.authService.getToken();
-  jwt = "Bearer "+jwt;
-  let httpHeaders = new HttpHeaders({"Authorization":jwt})
-  return this.http.put<Projet>(this.apiURL+"/updateproj", prod, {headers:httpHeaders});
+  
+  return this.http.put<Projet>(this.apiURL+"/updateproj", prod);
 }
 /*
 listerDepartement():Observable<Departement[]>{
 return this.http.get<Departement[]>(environment.apiURL+"/dep");
 }*/
 listerDepartement():Observable<DepartementWrapper>{
-  let jwt = this.authService.getToken();
-  jwt = "Bearer "+jwt;
-  let httpHeaders = new HttpHeaders({"Authorization":jwt})
-  return this.http.get<DepartementWrapper>(this.apiURLDep,{headers:httpHeaders});
+  
+  return this.http.get<DepartementWrapper>(this.apiURLDep);
 }
 rechercherParDepartement(idDep: number):Observable< Projet[]> {
-  let jwt = this.authService.getToken();
-  jwt = "Bearer "+jwt;
-  let httpHeaders = new HttpHeaders({"Authorization":jwt})
+  
   const url = `${this.apiURL}/projDeps/${idDep}`;
-  return this.http.get<Projet[]>(url,{headers:httpHeaders});
+  return this.http.get<Projet[]>(url);
 }
 rechercherParNom(nom: String):Observable< Projet[]> {
 const url = `${this.apiURL}/projByName/${nom}`;
