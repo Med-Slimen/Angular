@@ -1,0 +1,11 @@
+<div>
+    <form >
+        <label for="">Id</label>
+        <input type="number" readonly required [(ngModel)]="cuurentProduit.id" name="id" id="id"><br>
+        <label for="">Nom</label>
+        <input type="text" required [(ngModel)]="cuurentProduit.nom" name="nom" id="nom"><br>
+        <label for="">Prix</label>
+        <input type="number" required [(ngModel)]="cuurentProduit.prix" name="prix" id="prix"><br>
+        <a (click)="updateProd()">Modifier</a>
+    </form>
+</div>

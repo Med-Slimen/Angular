@@ -1,0 +1,11 @@
+<div>
+    <form >
+        <label for="">Id</label>
+        <input type="number" required [(ngModel)]="produit.id" name="id" id="id"><br>
+        <label for="">Nom</label>
+        <input type="text" required [(ngModel)]="produit.nom" name="nom" id="nom"><br>
+        <label for="">Prix</label>
+        <input type="number" required [(ngModel)]="produit.prix" name="prix" id="prix"><br>
+        <a (click)="addProd(produit)">Ajouter</a>
+    </form>
+</div>

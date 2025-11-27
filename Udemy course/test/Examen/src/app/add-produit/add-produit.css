@@ -1,0 +1,11 @@
+a{
+    cursor: pointer;
+    width: 150px;
+    padding: 8px;
+    margin: 5px;
+    font-size: 15px;
+    font-weight: bold;
+    border-radius: 10px;
+    background-color: black;
+    color: white;
+}

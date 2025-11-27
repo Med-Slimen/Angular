@@ -1,0 +1,23 @@
+<div>
+    <a routerLink="/addProduit">Ajouter un produit</a>
+</div>
+  <div>
+    <h1>Voici la liste des produit</h1>
+    <table border="3">
+        <tr>
+            <th>ID</th>
+            <th>Nom</th>
+            <th>Prix</th>
+        </tr>
+      @for (prod of produits; track prod.id) {
+        <tr>
+            <td>{{prod.id}}</td>
+            <td>{{prod.nom}}</td>
+            <td>{{prod.prix}}</td>
+            <td ><a (click)="supprimerProd(prod)">Supprimer</a></td>
+            <td><a [routerLink]="['/updateProd',prod.id]">Modifier</a></td>
+        </tr>
+      }
+    </table>
+    
+  </div>
