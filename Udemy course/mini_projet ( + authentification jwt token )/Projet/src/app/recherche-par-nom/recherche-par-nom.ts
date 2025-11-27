@@ -38,7 +38,7 @@ supprimerProjet(projet : Projet):void{
     console.log("projet supprimé");
     });
     //
-    this.projetService.rechercherParDepartement(this.IdDepart).subscribe(projs=>
+    this.projetService.rechercherParDepartement(projet.idProjet!).subscribe(projs=>
       this.projets=projs
     )
   }

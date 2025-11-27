@@ -29,6 +29,7 @@ export class AddProjet implements OnInit {
     console.log(deps);
 });
     this.myForm=this.formBuilder.group({
+      idProjet : [''],
       nomProjet : ['',[Validators.required,Validators.minLength(3)]],
       nomClient : ['',[Validators.required]],
       emailClient:['',[Validators.required,Validators.email]],
