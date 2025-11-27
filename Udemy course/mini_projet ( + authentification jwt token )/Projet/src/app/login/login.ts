@@ -12,13 +12,27 @@ import { Route, Router } from '@angular/router';
 })
 export class Login implements OnInit {
   user = new User();
-  erreur : number=0;
+  err : number=0;
   constructor(private authService: Auth, private router: Router) {}
   ngOnInit(): void {}
+  /*
   onLoggedin() {
     console.log(this.user);
     let isValidUser: Boolean = this.authService.SignIn(this.user);
     if (isValidUser) this.router.navigate(['/']);
     else this.erreur=1;
+  }*/
+ onLoggedin(){
+    this.authService.login(this.user).subscribe({
+    next: (data) => {
+    let jwToken = data.headers.get('Authorization')!;
+    this.authService.saveToken(jwToken);
+    this.router.navigate(['/']);
+    },
+    error: (err: any) => {
+    this.err = 1;
+    }
+    });
   }
+
 }

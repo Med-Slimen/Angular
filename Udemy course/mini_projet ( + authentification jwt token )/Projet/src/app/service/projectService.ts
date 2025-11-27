@@ -5,6 +5,7 @@ import { of, Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { DepartementWrapper } from '../model/DepartementWrapped';
+import { Auth } from './auth';
 const httpOptions = {
 headers: new HttpHeaders( {'Content-Type': 'application/json'} )
 };
@@ -19,7 +20,7 @@ export class ProjetService {
   projetsRecherche!:Projet[];
   apiURL : string ='http://localhost:8080/projets/api';
   apiURLDep:string = 'http://localhost:8080/projets/dep';
-  constructor(private http : HttpClient){
+  constructor(private http : HttpClient,private authService : Auth) {
     /*
     this.depart=[{idDepart:1,nomDepart:"Informatique"},{idDepart:2,nomDepart:"Marketing"},{idDepart:3,nomDepart:"Finance"},{idDepart:4,nomDepart:"Design"}]
     this.projets=[
@@ -35,7 +36,10 @@ export class ProjetService {
   ];*/
   }
   getProjets():Observable<Projet[]>{
-    return this.http.get<Projet[]>(this.apiURL);
+    let jwt = this.authService.getToken();
+    jwt = "Bearer "+jwt;
+    let httpHeaders = new HttpHeaders({"Authorization":jwt})
+    return this.http.get<Projet[]>(this.apiURL+"/all",{headers:httpHeaders});
   }
   /*
   addProjet(projet : Projet):void{
@@ -76,26 +80,41 @@ export class ProjetService {
     return this.projetsRecherche;
   }*/
  addProjet( proj: Projet):Observable<Projet>{
-  return this.http.post<Projet>(this.apiURL, proj, httpOptions);
+  let jwt = this.authService.getToken();
+  jwt = "Bearer "+jwt;
+  let httpHeaders = new HttpHeaders({"Authorization":jwt})
+  return this.http.post<Projet>(this.apiURL+"/addproj", proj, {headers:httpHeaders});
 }
 supprimerProjet(id : number) {
-const url = `${this.apiURL}/${id}`;
-return this.http.delete(url, httpOptions);
+  const url = `${this.apiURL}/delproj/${id}`;
+  let jwt = this.authService.getToken();
+  jwt = "Bearer "+jwt;
+  let httpHeaders = new HttpHeaders({"Authorization":jwt})
+  return this.http.delete(url, {headers:httpHeaders});
 }
 findProjet(id: number): Observable<Projet> {
-const url = `${this.apiURL}/${id}`;
-return this.http.get<Projet>(url);
+  const url = `${this.apiURL}/getbyid/${id}`;
+  let jwt = this.authService.getToken();
+  jwt = "Bearer "+jwt;
+  let httpHeaders = new HttpHeaders({"Authorization":jwt})
+  return this.http.get<Projet>(url,{headers:httpHeaders});
 }
 updateProjet(prod :Projet) : Observable<Projet>
 {
-return this.http.put<Projet>(this.apiURL, prod, httpOptions);
+  let jwt = this.authService.getToken();
+  jwt = "Bearer "+jwt;
+  let httpHeaders = new HttpHeaders({"Authorization":jwt})
+  return this.http.put<Projet>(this.apiURL+"/updateproj", prod, {headers:httpHeaders});
 }
 /*
 listerDepartement():Observable<Departement[]>{
 return this.http.get<Departement[]>(environment.apiURL+"/dep");
 }*/
 listerDepartement():Observable<DepartementWrapper>{
-return this.http.get<DepartementWrapper>(this.apiURLDep);
+  let jwt = this.authService.getToken();
+  jwt = "Bearer "+jwt;
+  let httpHeaders = new HttpHeaders({"Authorization":jwt})
+  return this.http.get<DepartementWrapper>(this.apiURLDep,{headers:httpHeaders});
 }
 rechercherParDepartement(idDep: number):Observable< Projet[]> {
 const url = `${this.apiURL}/projDeps/${idDep}`;

@@ -10,14 +10,12 @@ import { Auth } from './service/auth';
 })
 export class App implements OnInit {
   protected readonly title = signal('Projet');
-  constructor(public auth: Auth, private router: Router) {}
+  constructor(public auth: Auth, private router: Router,private authService : Auth) {}
   ngOnInit() {
-    let isloggedin: string;
-    let loggedUser: string;
-    isloggedin = localStorage.getItem('isloggedIn')!;
-    loggedUser = localStorage.getItem('loggedUser')!;
-    if (isloggedin != 'true' || !loggedUser) this.router.navigate(['/login']);
-    else this.auth.setLoggedUserFromLocalStorage(loggedUser);
+    this.authService.loadToken();
+if (this.authService.getToken()==null ||
+ this.authService.isTokenExpired())
+this.router.navigate(['/login']);
   }
   onLogout() {
     this.auth.logout();
